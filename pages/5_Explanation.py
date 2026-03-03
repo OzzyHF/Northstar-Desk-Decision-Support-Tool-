@@ -9,10 +9,13 @@ Provides interactive UI for:
 
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
-import json
+import joblib
+import numpy as np
 from pathlib import Path
+
+from explainability.core import ExplainabilityCore
+from explainability.llm_generator import FallbackGenerator
 
 st.set_page_config(
     page_title="Case Explanation",
@@ -87,6 +90,135 @@ def load_data():
     if path.exists():
         return pd.read_csv(path)
     return None
+
+
+@st.cache_resource
+def load_model():
+    """Load trained model and preprocessor."""
+    model_path = Path("models/rf_model.pkl")
+    preprocessor_path = Path("Data/processed/preprocessor.pkl")
+
+    if model_path.exists() and preprocessor_path.exists():
+        model = joblib.load(model_path)
+        preprocessor = joblib.load(preprocessor_path)
+        return model, preprocessor
+    return None, None
+
+
+@st.cache_resource
+def load_explainer(_model, _preprocessor):
+    """Load or create the explainability core."""
+    tabular_features = ["channel", "case_type", "category", "plan_tier", "customer_tenure_months"]
+
+    # Extract all feature names from preprocessor in correct order
+    feature_names = []
+
+    # Text features (TF-IDF) come first
+    if "text" in _preprocessor.named_transformers_:
+        text_transformer = _preprocessor.named_transformers_["text"]
+        if hasattr(text_transformer, "get_feature_names_out"):
+            feature_names.extend(text_transformer.get_feature_names_out().tolist())
+
+    # Categorical features (one-hot encoded)
+    if "cat" in _preprocessor.named_transformers_:
+        cat_transformer = _preprocessor.named_transformers_["cat"]
+        if hasattr(cat_transformer, "get_feature_names_out"):
+            feature_names.extend(cat_transformer.get_feature_names_out().tolist())
+
+    # Tenure features (binned)
+    if "tenure" in _preprocessor.named_transformers_:
+        tenure_transformer = _preprocessor.named_transformers_["tenure"]
+        if hasattr(tenure_transformer, "get_feature_names_out"):
+            feature_names.extend(tenure_transformer.get_feature_names_out().tolist())
+
+    # Load background data for SHAP
+    background_path = Path("Data/splits/X_train.csv")
+    background_data = None
+    if background_path.exists():
+        bg_df = pd.read_csv(background_path)
+        bg_sample = bg_df.head(50)
+        bg_sample["case_summary"] = bg_sample.get("case_summary", "").fillna("")
+        try:
+            background_data = _preprocessor.transform(bg_sample)
+        except Exception:
+            pass
+
+    # Get vectorizer if exists
+    vectorizer = None
+    if "text" in _preprocessor.named_transformers_:
+        vectorizer = _preprocessor.named_transformers_["text"]
+
+    explainer = ExplainabilityCore(
+        model=_model,
+        vectorizer=vectorizer,
+        feature_names=feature_names,
+        tabular_features=tabular_features,
+        background_data=background_data,
+        use_llm=False,  # Use template-based for now (faster)
+    )
+    return explainer
+
+
+def get_prediction(model, preprocessor, case_row):
+    """Get model prediction and probabilities for a case."""
+    # Prepare features matching preprocessor expectations
+    feature_cols = ["case_id", "created_at", "case_summary", "channel", "case_type",
+                    "category", "plan_tier", "customer_tenure_months"]
+
+    case_df = pd.DataFrame([case_row[feature_cols]])
+    case_df["case_summary"] = case_df["case_summary"].fillna("")
+
+    # Transform and predict
+    X_transformed = preprocessor.transform(case_df)
+
+    proba = model.predict_proba(X_transformed)[0]
+    pred_idx = np.argmax(proba)
+
+    priority_labels = ["Low", "Medium", "High", "Urgent"]
+    probabilities = dict(zip(priority_labels, proba.tolist()))
+    predicted_priority = priority_labels[pred_idx]
+
+    return predicted_priority, probabilities
+
+
+def get_feature_importance(model, preprocessor):
+    """Get top feature importances from the model."""
+    importances = model.feature_importances_
+
+    # Get feature names from preprocessor
+    feature_names = []
+
+    # Text features (TF-IDF)
+    if hasattr(preprocessor.named_transformers_.get("text", None), "get_feature_names_out"):
+        feature_names.extend(preprocessor.named_transformers_["text"].get_feature_names_out().tolist())
+
+    # Categorical features
+    if "cat" in preprocessor.named_transformers_:
+        cat_transformer = preprocessor.named_transformers_["cat"]
+        if hasattr(cat_transformer, "named_steps") and "onehot" in cat_transformer.named_steps:
+            feature_names.extend(cat_transformer.named_steps["onehot"].get_feature_names_out().tolist())
+
+    # Tenure bins
+    if "tenure" in preprocessor.named_transformers_:
+        n_bins = preprocessor.named_transformers_["tenure"].n_bins_[0]
+        feature_names.extend([f"tenure_bin_{i}" for i in range(n_bins)])
+
+    # Match importances to names
+    contributions = []
+    for i, name in enumerate(feature_names[:len(importances)]):
+        # Simplify feature names for display
+        display_name = name
+        if name.startswith("x0_") or name.startswith("x1_") or name.startswith("x2_") or name.startswith("x3_"):
+            display_name = name[3:]  # Remove prefix
+
+        contributions.append({
+            "feature": display_name,
+            "contribution": float(importances[i]) if i < len(importances) else 0.0
+        })
+
+    # Sort by importance and return top features
+    contributions.sort(key=lambda x: abs(x["contribution"]), reverse=True)
+    return contributions[:10]
 
 
 def get_priority_color(priority):
@@ -300,78 +432,110 @@ for i, feat in enumerate(feature_cols):
         value = case_data.get(feat, "N/A")
         st.metric(feat.replace("_", " ").title(), str(value))
 
-# Explanation section (placeholder until model is integrated)
+# Model Explanation section
 st.markdown("---")
-st.markdown(f"<h2 style='color:{THEME_COLOUR};'>Model Explanation</h2>", unsafe_allow_html=True)
+st.markdown(f"<h2 style='color:{THEME_COLOUR};'>Model Prediction</h2>", unsafe_allow_html=True)
 
-st.info("""
-**Note:** This section will show SHAP-based explanations once a trained model is integrated.
+# Load model
+model, preprocessor = load_model()
 
-To enable full explanations:
-1. Train a model using the scripts in `scripts/`
-2. Save the model and vectorizer using joblib
-3. Update this page to load and use the ExplainabilityCore class
+if model is None or preprocessor is None:
+    st.warning("Model not found. Run `python scripts/s_01_preprocess.py` and `python scripts/s_06_train_rf.py` to train.")
+    st.stop()
 
-Example integration:
-```python
-from explainability import ExplainabilityCore
-import joblib
+# Get real prediction and explanation
+try:
+    # Basic prediction for probabilities chart
+    predicted_priority, probabilities = get_prediction(model, preprocessor, case_data)
 
-model = joblib.load('models/priority_classifier.joblib')
-vectorizer = joblib.load('models/tfidf_vectorizer.joblib')
+    # Prepare features for explainer
+    feature_cols = ["case_id", "created_at", "case_summary", "channel", "case_type",
+                    "category", "plan_tier", "customer_tenure_months"]
+    case_df = pd.DataFrame([case_data[feature_cols]])
+    case_df["case_summary"] = case_df["case_summary"].fillna("")
 
-explainer = ExplainabilityCore(
-    model=model,
-    vectorizer=vectorizer,
-    tabular_features=['channel', 'case_type', 'category', 'plan_tier', 'customer_tenure_months']
-)
+    # Transform for model
+    X_transformed = preprocessor.transform(case_df)
 
-result = explainer.explain(features, case_id=selected_case)
-```
-""")
+    # Get raw feature values for explanation
+    raw_features = {
+        "channel": case_data.get("channel"),
+        "case_type": case_data.get("case_type"),
+        "category": case_data.get("category"),
+        "plan_tier": case_data.get("plan_tier"),
+        "customer_tenure_months": case_data.get("customer_tenure_months"),
+    }
 
-# Demo visualization with simulated data
-st.markdown("### Demo: Explanation Visualization")
-st.caption("Below is a demonstration using simulated data.")
+    # Generate SHAP-based explanation
+    explainer = load_explainer(model, preprocessor)
+    explanation_result = explainer.explain(
+        X=X_transformed,
+        case_id=str(selected_case),
+        raw_features=raw_features,
+        generate_text=True,
+    )
 
-# Simulated probability distribution based on actual priority
-demo_probs = {
-    "Low": 0.05,
-    "Medium": 0.15,
-    "High": 0.65,
-    "Urgent": 0.15,
-}
+    # Display natural language explanation
+    st.markdown("### Why This Priority?")
+    explanation_text = explanation_result.get("explanation", "")
+    if explanation_text:
+        st.info(explanation_text)
+    else:
+        st.write("Explanation generation unavailable.")
 
-if priority == "Urgent":
-    demo_probs = {"Low": 0.02, "Medium": 0.08, "High": 0.15, "Urgent": 0.75}
-elif priority == "High":
-    demo_probs = {"Low": 0.05, "Medium": 0.15, "High": 0.70, "Urgent": 0.10}
-elif priority == "Medium":
-    demo_probs = {"Low": 0.15, "Medium": 0.65, "High": 0.15, "Urgent": 0.05}
-elif priority == "Low":
-    demo_probs = {"Low": 0.70, "Medium": 0.20, "High": 0.08, "Urgent": 0.02}
+    # Show prediction comparison
+    col1, col2 = st.columns(2)
 
-col1, col2 = st.columns(2)
-
-with col1:
-    st.markdown("#### Predicted Probabilities")
-    fig = create_probability_chart(demo_probs)
-    st.plotly_chart(fig, use_container_width=True)
-
-with col2:
-    st.markdown("#### Top Contributing Factors")
-    # Simulated contributions
-    demo_contributions = [
-        {"feature": "case_type", "contribution": 0.25},
-        {"feature": "plan_tier", "contribution": 0.18},
-        {"feature": "channel", "contribution": -0.08},
-        {"feature": "category", "contribution": 0.12},
-        {"feature": "customer_tenure_months", "contribution": 0.05},
-    ]
-    fig = create_contribution_chart(demo_contributions)
-    if fig:
+    with col1:
+        st.markdown("#### Model Predicted Probabilities")
+        fig = create_probability_chart(probabilities)
         st.plotly_chart(fig, use_container_width=True)
+
+        # Show if prediction matches actual
+        if predicted_priority == priority:
+            st.success(f"Model prediction ({predicted_priority}) matches actual priority")
+        else:
+            st.warning(f"Model predicts **{predicted_priority}**, actual is **{priority}**")
+
+    with col2:
+        st.markdown("#### Top Feature Contributions")
+        # Use SHAP-based contributions from explainer
+        card_data = explanation_result.get("card_data", {})
+        positive_factors = card_data.get("top_positive_factors", [])
+        negative_factors = card_data.get("top_negative_factors", [])
+
+        if positive_factors or negative_factors:
+            contributions = []
+            for f in positive_factors:
+                contributions.append({"feature": f["name"], "contribution": f["impact"]})
+            for f in negative_factors:
+                contributions.append({"feature": f["name"], "contribution": f["impact"]})
+
+            fig = create_contribution_chart(contributions, title="SHAP Contributions")
+            if fig:
+                st.plotly_chart(fig, use_container_width=True)
+        else:
+            # Fallback to feature importance
+            feature_contributions = get_feature_importance(model, preprocessor)
+            fig = create_contribution_chart(feature_contributions, title="Feature Importance")
+            if fig:
+                st.plotly_chart(fig, use_container_width=True)
+
+    # Show contributing factors detail
+    if positive_factors:
+        st.markdown("---")
+        st.markdown("### Contributing Factors")
+        render_factor_list(positive_factors, "Factors Increasing Priority", positive=True)
+
+    if negative_factors:
+        render_factor_list(negative_factors, "Factors Decreasing Priority", positive=False)
+
+except Exception as e:
+    st.error(f"Error generating prediction: {e}")
+    import traceback
+    st.code(traceback.format_exc())
+    st.stop()
 
 # Footer
 st.markdown("---")
-st.caption("Explanations are generated using SHAP (SHapley Additive exPlanations) values.")
+st.caption("Explanations are generated using SHAP (SHapley Additive exPlanations) values with natural language generation.")

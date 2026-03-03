@@ -134,6 +134,10 @@ class SHAPExplainer:
         if hasattr(X, "values"):
             X = X.values
 
+        # Convert sparse matrix to dense array
+        if hasattr(X, "toarray"):
+            X = X.toarray()
+
         # Ensure 2D
         if X.ndim == 1:
             X = X.reshape(1, -1)
@@ -156,6 +160,10 @@ class SHAPExplainer:
         Returns:
             dict with shap_values (1D array) and base_value
         """
+        # Convert sparse matrix to dense array
+        if hasattr(X, "toarray"):
+            X = X.toarray()
+
         if hasattr(X, "values"):
             X = X.values.reshape(1, -1)
         elif X.ndim == 1:
@@ -163,15 +171,30 @@ class SHAPExplainer:
 
         shap_values = self.explain(X)
 
-        # Handle multi-class output (list of arrays)
+        # Determine predicted class if not specified
+        if class_idx is None:
+            proba = self.model.predict_proba(X)[0]
+            class_idx = np.argmax(proba)
+
+        # Handle different SHAP output formats
         if isinstance(shap_values, list):
-            if class_idx is None:
-                # Use predicted class
-                proba = self.model.predict_proba(X)[0]
-                class_idx = np.argmax(proba)
+            # List of arrays, one per class: [array(n_samples, n_features), ...]
             values = shap_values[class_idx][0]
+        elif shap_values.ndim == 3:
+            # Shape: (n_samples, n_features, n_classes)
+            values = shap_values[0, :, class_idx]
+        elif shap_values.ndim == 2:
+            # Could be (n_samples, n_features) or (n_features, n_classes) for single sample
+            if shap_values.shape[0] == 1:
+                # Single sample: (1, n_features)
+                values = shap_values[0]
+            elif shap_values.shape[1] == len(self.model.classes_):
+                # Shape: (n_features, n_classes) - select class column
+                values = shap_values[:, class_idx]
+            else:
+                values = shap_values[0]
         else:
-            values = shap_values[0]
+            values = shap_values
 
         # Get base value
         if hasattr(self.explainer, "expected_value"):

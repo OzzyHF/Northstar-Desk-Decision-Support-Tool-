@@ -103,20 +103,28 @@ class ExplainabilityCore:
             X = X.reshape(1, -1)
 
         # Get prediction and probabilities
-        prediction = self.model.predict(X)[0]
+        prediction_raw = self.model.predict(X)[0]
         if hasattr(self.model, "predict_proba"):
             proba = self.model.predict_proba(X)[0]
             classes = self.model.classes_
-            probabilities = dict(zip(classes, proba.tolist()))
+            # Find the predicted class index for SHAP
+            predicted_idx = list(classes).index(prediction_raw)
+            # Convert to string labels for output
+            probabilities = {
+                PRIORITY_LEVELS[int(c)] if isinstance(c, (int, np.integer)) else c: p
+                for c, p in zip(classes, proba.tolist())
+            }
         else:
-            probabilities = {prediction: 1.0}
+            predicted_idx = 0
+            probabilities = {prediction_raw: 1.0}
 
         # Map prediction to string if numeric
-        if isinstance(prediction, (int, np.integer)):
-            prediction = PRIORITY_LEVELS[prediction]
+        if isinstance(prediction_raw, (int, np.integer)):
+            prediction = PRIORITY_LEVELS[int(prediction_raw)]
+        else:
+            prediction = prediction_raw
 
         # Compute SHAP values
-        predicted_idx = list(probabilities.keys()).index(prediction)
         shap_result = self.shap_explainer.explain_single(X, class_idx=predicted_idx)
         shap_values = shap_result["shap_values"]
 
@@ -172,22 +180,52 @@ class ExplainabilityCore:
         shap_values: np.ndarray,
         raw_features: Optional[Dict],
     ) -> List[Dict]:
-        """Process tabular feature contributions."""
+        """Process tabular feature contributions by aggregating one-hot encoded columns."""
         contributions = []
 
-        for i, feature_name in enumerate(self.tabular_features):
-            if i >= len(shap_values):
-                break
+        # Get all feature names from the model/preprocessor if available
+        all_feature_names = self.feature_names
 
-            value = None
-            if raw_features and feature_name in raw_features:
-                value = raw_features[feature_name]
+        # If we have feature names, aggregate SHAP values by original feature
+        if all_feature_names and len(all_feature_names) == len(shap_values):
+            for feature_name in self.tabular_features:
+                # Find all columns that belong to this feature (e.g., channel_email, channel_phone)
+                prefix = f"{feature_name}_"
+                feature_indices = [
+                    i for i, name in enumerate(all_feature_names)
+                    if name.startswith(prefix) or name == feature_name
+                ]
 
-            contributions.append({
-                "feature": feature_name,
-                "value": value,
-                "contribution": float(shap_values[i]),
-            })
+                if feature_indices:
+                    # Sum SHAP values for all columns of this feature
+                    total_contribution = sum(shap_values[i] for i in feature_indices)
+                else:
+                    total_contribution = 0.0
+
+                value = None
+                if raw_features and feature_name in raw_features:
+                    value = raw_features[feature_name]
+
+                contributions.append({
+                    "feature": feature_name,
+                    "value": value,
+                    "contribution": float(total_contribution),
+                })
+        else:
+            # Fallback: use first N values (less accurate)
+            for i, feature_name in enumerate(self.tabular_features):
+                if i >= len(shap_values):
+                    break
+
+                value = None
+                if raw_features and feature_name in raw_features:
+                    value = raw_features[feature_name]
+
+                contributions.append({
+                    "feature": feature_name,
+                    "value": value,
+                    "contribution": float(shap_values[i]),
+                })
 
         # Sort by absolute contribution
         contributions.sort(key=lambda x: abs(x["contribution"]), reverse=True)

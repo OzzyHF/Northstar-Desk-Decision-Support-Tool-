@@ -14,7 +14,7 @@ FILES = [
 # where 27 rows are missing the gender value, causing all columns after it to shift left
 frames = []
 for filename in FILES:
-    filepath = os.path.join("Data/Raw Data", filename)
+    filepath = os.path.join("../Data/Raw Data", filename)
     rows = []
     with open(filepath, newline="", encoding="utf-8") as f:
         reader = csv.reader(f)

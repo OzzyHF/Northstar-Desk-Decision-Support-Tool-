@@ -10,7 +10,7 @@ st.markdown(f"<h1 style='color:{THEME_COLOUR};'>Hackathon</h1>", unsafe_allow_ht
 
 col1, col2 = st.columns(2)
 with col1:
-    logo = Image.open(r"C:\Users\barnyrumbold\OneDrive - Kidney Research UK\Desktop\Hackathon\Northstar-Desk-Decision-Support-Tool-\ChatGPT Image Mar 3, 2026, 12_31_48 PM.png")  
+    logo = Image.open("images/ChatGPT Image Mar 3, 2026, 12_31_48 PM.png")
     st.image(logo, width=450)  
 with col2:
 

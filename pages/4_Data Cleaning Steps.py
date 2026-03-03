@@ -18,7 +18,7 @@ st.write('This page provides an overview of the data cleaning steps used and gen
 col1, col2 = st.columns(2)
 with col1:
     st.markdown(f"<h2 style='color:{THEME_COLOUR};'>Correlation Matrix</h2>", unsafe_allow_html=True)
-    path = r"C:\Users\barnyrumbold\OneDrive - Kidney Research UK\Desktop\Hackathon\Northstar-Desk-Decision-Support-Tool-\Data\clean.csv"
+    path = "Data\clean.csv"
     d = pd.read_csv(path)
     num_df = d.select_dtypes(include="number")
     corr = num_df.corr(method="pearson")

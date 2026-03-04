@@ -1,0 +1,342 @@
+case_id,created_at,case_summary,channel,case_type,category,plan_tier,customer_tenure_months
+ND-2025-001617,2025-09-04 08:45:11+00:00,Colleague cannot see the shared Polaris Board,email,service_request,data_reporting,Pro,22
+ND-2025-001294,2025-07-25 08:50:50+00:00,Is Xero down? Connector stuck.,email,incident,integrations,Pro,35
+ND-2025-001878,2025-10-25 09:20:50+00:00,Cannot update VAT number in settings.,in_app,incident,account_admin,Pro,14
+ND-2025-000876,2025-05-14 13:45:20+00:00,Cannot login to mobile app since update.,email,incident,bug,Enterprise,21
+ND-2025-002035,2025-11-12 13:50:15+00:00,Just testing the chat support.,webchat,service_request,other,Free,0
+ND-2025-000903,2025-05-20 11:05:25+00:00,Misaligned text.,email,incident,bug,Standard,4
+ND-2025-000525,2025-03-24 12:15:30+00:00,VAT receipt needed,email,service_request,billing_payments,Pro,20
+ND-2025-001876,2025-10-24 11:15:33+00:00,Reset password link is broken.,email,service_request,access_permissions,Standard,9
+ND-2025-000594,2025-03-07 17:00:45+00:00,Export failed on report,email,incident,bug,Enterprise,19
+ND-2025-002150,2025-11-28 09:10:30+00:00,Settings update.,email,service_request,account_admin,Standard,14
+ND-2025-002238,2025-12-15 13:40:55+00:00,Report timestamps are in UTC need GMT.,email,service_request,data_reporting,Standard,5
+ND-2025-002113,2025-11-07 14:10:25+00:00,Update caused a glitch.,webchat,incident,bug,Pro,16
+ND-2025-000449,2025-03-09 10:20:12+00:00,Upgrade to Pro please,webchat,service_request,billing_payments,Standard,8
+ND-2025-000016,2025-01-06 16:40:00+00:00,Link to the knowledge base in the footer 404s,email,service_request,bug,Pro,10
+ND-2025-001080,2025-06-25 11:15:40+00:00,Cancel my subscription at end of term,webchat,service_request,billing_payments,Standard,11
+ND-2025-001927,2025-10-18 12:00:05+00:00,Remove my details.,webchat,service_request,security_privacy,Standard,8
+ND-2025-000492,2025-03-17 15:25:45+00:00,Urgent payment failure risk of service interruption,email,incident,billing_payments,Enterprise,30
+ND-2025-001230,2025-07-08 11:35:25+00:00,Very slow loading times on the main dashboard today.,email,incident,performance_outage,Pro,25
+ND-2025-002242,2025-12-16 11:50:00+00:00,We are moving to a different provider please close account.,email,service_request,account_admin,Pro,6
+ND-2025-001299,2025-07-26 11:45:55+00:00,Hitting rate limits on the API again.,webchat,incident,integrations,Standard,9
+ND-2025-000455,2025-03-10 12:10:25+00:00,VAT receipt please,email,service_request,billing_payments,Pro,13
+ND-2025-000005,2025-01-03 09:10:15+00:00,Double charged for the Pro tier upgrade on my Jan invoice,phone,incident,billing_payments,Enterprise,24
+ND-2025-000726,2025-04-20 09:15:00+00:00,Change timezone to EST,email,service_request,data_reporting,Pro,16
+ND-2025-001106,2025-06-17 11:15:30+00:00,REST API returning 502 Bad Gateway,webchat,incident,integrations,Enterprise,30
+ND-2025-002257,2025-12-19 13:25:30+00:00,Confirming data deletion policy post-closure.,email,service_request,account_admin,Enterprise,26
+ND-2025-000897,2025-05-19 09:55:55+00:00,Total blackout. Cannot access anything.,phone,incident,performance_outage,Enterprise,36
+ND-2025-000132,2025-01-13 08:50:50+00:00,How to get started,email,service_request,how_to_training,Standard,1
+ND-2025-001124,2025-06-24 10:45:10+00:00,Delete my account GDPR,email,service_request,account_admin,Pro,25
+ND-2025-000739,2025-04-30 12:50:00+00:00,Footer overlaps text,email,incident,bug,Free,5
+ND-2025-002032,2025-11-11 15:30:22+00:00,Polaris board layout is broken on Safari.,email,incident,bug,Pro,6
+ND-2025-000875,2025-05-14 11:00:55+00:00,Need example of new JSON format.,in_app,service_request,how_to_training,Free,3
+ND-2025-001222,2025-07-06 10:30:55+00:00,Getting a 500 error on the main Polaris dashboard page.,email,incident,performance_outage,Standard,12
+ND-2025-001939,2025-10-28 11:45:10+00:00,Delete my data.,in_app,service_request,security_privacy,Standard,5
+ND-2025-001131,2025-06-12 13:30:15+00:00,Getting a generic error message on save,phone,incident,bug,Standard,13
+ND-2025-000434,2025-03-06 09:40:12+00:00,I can't find the VAT invoice in the settings,email,service_request,billing_payments,Pro,16
+ND-2025-001682,2025-09-21 09:50:40+00:00,Cannot export widget data to CSV,email,service_request,data_reporting,Enterprise,35
+ND-2025-000587,2025-03-06 12:55:50+00:00,Mobile view broken,email,incident,bug,Standard,9
+ND-2025-001042,2025-06-13 15:55:05+00:00,App crashes on iOS when I try to open a widget,phone,incident,bug,Pro,7
+ND-2025-001480,2025-08-27 11:20:15+00:00,Want to upgrade to Pro for the summer deal.,in_app,service_request,billing_payments,Free,2
+ND-2025-001918,2025-10-11 08:50:44+00:00,Login alert from unusual location.,email,incident,security_privacy,Standard,6
+ND-2025-000840,2025-05-07 10:30:10+00:00,Best way to organize Polaris Boards with the new folder structure?,in_app,service_request,how_to_training,Enterprise,14
+ND-2025-002101,2025-11-01 16:30:22+00:00,Invoice amount is incorrect.,email,incident,billing_payments,Pro,25
+ND-2025-002015,2025-11-06 10:00:01+00:00,What is your data retention policy for closed accounts?,email,service_request,account_admin,Standard,33
+ND-2025-000110,2025-01-20 09:20:00+00:00,Stop sending me weekly digest emails,email,service_request,account_admin,Standard,4
+ND-2025-001012,2025-06-05 10:00:00+00:00,The button to save changes is overlapping with the footer,in_app,incident,bug,Standard,5
+ND-2025-000593,2025-03-07 16:25:20+00:00,VAT receipt please,email,service_request,billing_payments,Pro,16
+ND-2025-001228,2025-07-08 08:20:45+00:00,Xero integration totally unresponsive.,in_app,incident,integrations,Enterprise,42
+ND-2025-002243,2025-12-16 14:25:33+00:00,Menu bar overlaps the Polaris chart.,webchat,incident,bug,Standard,9
+ND-2025-001246,2025-07-12 14:30:10+00:00,Connection to Salesforce keeps timing out.,in_app,incident,integrations,Pro,28
+ND-2025-001460,2025-08-20 11:40:15+00:00,OAuth token for Salesforce keeps expiring.,email,incident,integrations,Pro,35
+ND-2025-001507,2025-08-15 15:00:00+00:00,Need admin access to see billing.,webchat,service_request,access_permissions,Free,3
+ND-2025-001204,2025-07-01 13:45:33+00:00,My Polaris Board isn't showing the right VAT figures from Xero.,phone,incident,integrations,Pro,4
+ND-2025-001343,2025-07-23 15:20:00+00:00,Rate limit on API.,webchat,incident,integrations,Pro,26
+ND-2025-001430,2025-08-09 10:00:00+00:00,Polaris board looks weird on Firefox.,webchat,incident,bug,Standard,16
+ND-2025-000605,2025-04-02 08:55:00+00:00,Exporting the Sales KPI Polaris board to PDF cuts off the footer,in_app,service_request,data_reporting,Standard,11
+ND-2025-002116,2025-11-10 09:15:35+00:00,Change billing contact.,phone,service_request,account_admin,Standard,13
+ND-2025-001893,2025-10-29 13:50:10+00:00,MFA is broken again.,phone,incident,security_privacy,Pro,18
+ND-2025-000612,2025-04-03 16:00:00+00:00,App crashes when I open the finance board on iOS,in_app,incident,bug,Standard,9
+ND-2025-001934,2025-10-25 08:30:10+00:00,Invite not received.,in_app,service_request,access_permissions,Standard,6
+ND-2025-001424,2025-08-07 10:10:15+00:00,New here need help setting up my first connector.,in_app,service_request,how_to_training,Free,1
+ND-2025-001892,2025-10-29 11:25:22+00:00,Demo request for Northstar Enterprise.,email,service_request,other,Free,0
+ND-2025-001869,2025-10-22 09:15:12+00:00,Responsible disclosure: IDOR vulnerability in invoice download.,email,incident,security_privacy,Pro,12
+ND-2025-000679,2025-04-24 13:30:00+00:00,Missing VAT receipt for Feb invoice,email,service_request,billing_payments,Pro,12
+ND-2025-000166,2025-01-17 10:15:40+00:00,Data gap in Q4 reports,email,service_request,data_reporting,Pro,10
+ND-2025-000873,2025-05-14 09:30:10+00:00,Colours look washed out.,email,incident,bug,Standard,4
+ND-2025-001293,2025-07-24 15:40:25+00:00,Xero API timeout again.,email,incident,integrations,Pro,26
+ND-2025-000691,2025-04-28 08:50:00+00:00,Field mapping is wrong for the custom connector,email,service_request,integrations,Standard,12
+ND-2025-000571,2025-03-02 12:35:10+00:00,Update billing email,email,service_request,account_admin,Pro,10
+ND-2025-001417,2025-08-05 08:20:15+00:00,Queries on the large dataset are timing out.,email,incident,performance_outage,Pro,18
+ND-2025-001415,2025-08-04 11:55:45+00:00,Can't share the Q2 Financials Polaris board with the team.,email,service_request,data_reporting,Pro,5
+ND-2025-002248,2025-12-17 16:00:30+00:00,Cancel account.,webchat,service_request,account_admin,Standard,8
+ND-2025-002209,2025-12-05 11:15:33+00:00,Polaris board showing zero revenue for December but Xero has data.,in_app,incident,data_reporting,Pro,18
+ND-2025-000829,2025-05-05 11:20:40+00:00,Polaris board is lagging significantly when filtering.,email,incident,performance_outage,Pro,13
+ND-2025-001130,2025-06-09 11:05:40+00:00,App crashes on loading big report,email,incident,performance_outage,Pro,38
+ND-2025-001726,2025-09-12 08:55:15+00:00,Colleague can't view the Polaris report I shared,webchat,service_request,data_reporting,Standard,13
+ND-2025-002026,2025-11-10 09:30:44+00:00,Unrecognised login attempt flagged on my Orbit ID.,phone,incident,security_privacy,Standard,13
+ND-2025-002164,2025-11-08 09:40:20+00:00,General inquiry.,email,service_request,other,Free,0
+ND-2025-000721,2025-04-15 11:20:00+00:00,Internal Server Error 500 on login,email,incident,performance_outage,Enterprise,45
+ND-2025-000880,2025-05-15 10:40:50+00:00,How do I delete a widget now?,webchat,service_request,how_to_training,Free,6
+ND-2025-000650,2025-04-16 08:30:00+00:00,Too many emails how do I turn them off?,email,service_request,account_admin,Pro,12
+ND-2025-001752,2025-09-03 09:50:05+00:00,Huge latency on Polaris Board right now,email,incident,performance_outage,Enterprise,60
+ND-2025-001709,2025-09-28 09:10:45+00:00,API auth error on custom connector,phone,incident,integrations,Standard,19
+ND-2025-000933,2025-05-26 13:40:55+00:00,Graph axis misaligned.,email,incident,bug,Standard,5
+ND-2025-002148,2025-11-27 08:40:40+00:00,Invite user.,email,service_request,account_admin,Standard,20
+ND-2025-000093,2025-01-03 09:55:40+00:00,HubSpot sync timing out consistently,email,incident,integrations,Pro,11
+ND-2025-001285,2025-07-22 15:35:05+00:00,Dashboard is really slow to load widgets.,webchat,incident,performance_outage,Standard,17
+ND-2025-001860,2025-10-19 10:40:12+00:00,Please delete the account for t.jones@company.com.,email,service_request,account_admin,Standard,13
+ND-2025-002315,2025-12-08 11:55:12+00:00,Export fails on large dataset.,email,service_request,data_reporting,Pro,18
+ND-2025-000530,2025-03-25 12:10:35+00:00,VAT invoice required,email,service_request,billing_payments,Pro,16
+ND-2025-002264,2025-12-03 09:55:22+00:00,Filters broken after yesterday's update.,email,incident,bug,Enterprise,20
+ND-2025-001053,2025-06-17 10:50:15+00:00,Need steps to debug why my csv upload failed,email,service_request,how_to_training,Standard,8
+ND-2025-000009,2025-01-04 13:45:22+00:00,SSO failing for our domain via Orbit ID,in_app,incident,access_permissions,Enterprise,36
+ND-2025-000441,2025-03-07 12:30:30+00:00,Our account is locked due to failed payment fix this immediately,email,incident,billing_payments,Enterprise,28
+ND-2025-001498,2025-08-06 10:10:00+00:00,Cannot find the help article on widgets.,email,service_request,how_to_training,Free,2
+ND-2025-001035,2025-06-11 16:10:55+00:00,Policy on data retention if we cancel our sub,email,service_request,account_admin,Enterprise,21
+ND-2025-001137,2025-06-30 09:00:45+00:00,Privacy policy question,phone,service_request,security_privacy,Standard,20
+ND-2025-001114,2025-06-04 09:35:20+00:00,Close account not using it,phone,service_request,account_admin,Standard,10
+ND-2025-001266,2025-07-17 15:30:40+00:00,Fields mapping wrong on the new Xero integration.,webchat,incident,integrations,Standard,10
+ND-2025-002040,2025-11-13 15:20:10+00:00,Shopify webhooks are failing since yesterday.,email,incident,integrations,Pro,26
+ND-2025-001922,2025-10-14 14:30:22+00:00,Locked out of everything.,phone,incident,access_permissions,Standard,5
+ND-2025-001649,2025-09-11 11:55:00+00:00,PDF export cuts off the bottom of the Polaris Board,in_app,service_request,data_reporting,Standard,21
+ND-2025-001491,2025-08-31 08:55:40+00:00,Close my account please.,webchat,service_request,account_admin,Free,3
+ND-2025-000089,2025-01-30 11:25:10+00:00,Text overlapping on the settings page,in_app,service_request,bug,Standard,5
+ND-2025-001858,2025-10-18 14:00:44+00:00,Orbit ID keeps logging me out every 10 minutes.,email,incident,security_privacy,Pro,16
+ND-2025-000623,2025-04-07 09:10:00+00:00,Filter on Widget A isn't excluding internal IPs,in_app,service_request,data_reporting,Standard,10
+ND-2025-001333,2025-07-13 13:50:00+00:00,JSON format error.,email,incident,integrations,Pro,18
+ND-2025-000683,2025-04-25 14:05:00+00:00,Do you offer discounts for non-profits?,webchat,service_request,other,Free,0
+ND-2025-001076,2025-06-24 09:35:40+00:00,June data missing from the overview widget,phone,incident,data_reporting,Pro,8
+ND-2025-002325,2025-12-18 10:40:55+00:00,Filter not excluding selected items.,in_app,service_request,data_reporting,Pro,15
+ND-2025-001832,2025-10-09 10:30:40+00:00,Invite link for the new guy expired.,in_app,service_request,access_permissions,Standard,5
+ND-2025-000484,2025-03-16 10:55:25+00:00,Remove user from team,email,service_request,account_admin,Standard,7
+ND-2025-001288,2025-07-23 12:45:20+00:00,JSON error when fetching data.,email,incident,integrations,Standard,8
+ND-2025-001733,2025-09-26 15:05:35+00:00,Broken link in the help menu,in_app,incident,bug,Standard,6
+ND-2025-001119,2025-06-14 14:40:15+00:00,Update credit card urgently before expiry,webchat,service_request,billing_payments,Pro,15
+ND-2025-001434,2025-08-11 08:30:20+00:00,Need audit logs for user activity last month.,webchat,service_request,account_admin,Pro,24
+ND-2025-002129,2025-11-17 13:45:45+00:00,REST API endpoint failure.,email,incident,integrations,Enterprise,33
+ND-2025-002130,2025-11-18 10:10:10+00:00,Partner with us.,webchat,service_request,other,Free,0
+ND-2025-000408,2025-03-02 08:45:10+00:00,We need the audit logs for Q1 for our internal review,email,service_request,account_admin,Enterprise,40
+ND-2025-001314,2025-07-30 11:50:10+00:00,Auth failed for Shopify integration.,in_app,incident,integrations,Standard,9
+ND-2025-000505,2025-03-20 12:15:10+00:00,VAT receipt thanks,email,service_request,billing_payments,Pro,16
+ND-2025-000894,2025-05-18 11:00:40+00:00,Sorting broken in table widget.,email,incident,bug,Standard,20
+ND-2025-001338,2025-07-18 14:25:00+00:00,Export not working for PDF.,webchat,service_request,data_reporting,Standard,13
+ND-2025-000548,2025-03-29 09:00:05+00:00,Screen frozen on loading,email,incident,bug,Standard,8
+ND-2025-002019,2025-11-07 11:40:22+00:00,Fields aren't mapping correctly from HubSpot to the contact widget.,email,incident,integrations,Standard,21
+ND-2025-000692,2025-04-28 10:25:00+00:00,Any templates for SaaS KPIs?,in_app,service_request,how_to_training,Free,4
+ND-2025-001466,2025-08-22 11:30:40+00:00,Do you have a video tutorial for beginners?,in_app,service_request,how_to_training,Free,1
+ND-2025-002215,2025-12-08 08:45:30+00:00,Compliance requires audit logs for all 2025 logins.,email,service_request,account_admin,Enterprise,36
+ND-2025-002090,2025-11-28 08:50:45+00:00,Update organization details.,email,service_request,account_admin,Enterprise,30
+ND-2025-002265,2025-12-03 13:40:05+00:00,Cancel service.,webchat,service_request,account_admin,Standard,9
+ND-2025-001273,2025-07-19 14:05:15+00:00,API timeout on the main connector sync.,email,incident,integrations,Pro,25
+ND-2025-001050,2025-06-16 11:40:55+00:00,Account suspended due to failed payment card expired,webchat,service_request,billing_payments,Standard,5
+ND-2025-002324,2025-12-17 08:20:12+00:00,Cancel subscription.,email,service_request,account_admin,Standard,12
+ND-2025-000854,2025-05-09 14:00:15+00:00,Cannot add new widgets since the update.,email,incident,bug,Pro,19
+ND-2025-000534,2025-03-26 10:50:15+00:00,Update company email,email,service_request,account_admin,Pro,8
+ND-2025-000133,2025-01-14 10:25:25+00:00,Salesforce sync failed overnight,webchat,incident,integrations,Pro,12
+ND-2025-000826,2025-05-05 09:10:25+00:00,Can you show me an example of the new widget configuration?,webchat,service_request,how_to_training,Free,2
+ND-2025-000728,2025-04-22 13:55:00+00:00,Partnership proposal,email,service_request,other,Free,0
+ND-2025-002138,2025-11-22 09:00:30+00:00,Update settings.,email,service_request,account_admin,Standard,18
+ND-2025-001905,2025-10-03 14:40:44+00:00,Invite not working.,in_app,service_request,access_permissions,Standard,7
+ND-2025-000868,2025-05-13 09:00:15+00:00,Help link goes to 404.,email,incident,bug,Standard,14
+ND-2025-000576,2025-03-03 14:30:15+00:00,Send VAT receipt,email,service_request,billing_payments,Pro,11
+ND-2025-000642,2025-04-13 09:15:00+00:00,Account locked after too many attempts help,in_app,incident,access_permissions,Standard,7
+ND-2025-002284,2025-12-11 11:30:22+00:00,Very slow to load Polaris boards.,webchat,incident,performance_outage,Pro,11
+ND-2025-001070,2025-06-22 12:05:10+00:00,Invoice address is still showing old office,webchat,service_request,billing_payments,Pro,19
+ND-2025-001221,2025-07-06 08:45:22+00:00,Fields aren't mapping correctly from Salesforce since the update.,webchat,incident,integrations,Pro,20
+ND-2025-002012,2025-11-05 08:30:05+00:00,Stop sending me so many emails about weekly summaries.,email,service_request,account_admin,Free,2
+ND-2025-000483,2025-03-16 09:20:00+00:00,Invoice incorrect reflects standard instead of enterprise,email,incident,billing_payments,Enterprise,20
+ND-2025-000065,2025-01-22 11:30:35+00:00,Downgraded to Standard but still charged Pro rate,email,incident,billing_payments,Pro,11
+ND-2025-000929,2025-05-26 08:40:15+00:00,"Lost MFA device, need reset.",email,incident,access_permissions,Enterprise,30
+ND-2025-000889,2025-05-17 10:35:35+00:00,Help setting up first board.,email,service_request,how_to_training,Standard,1
+ND-2025-000443,2025-03-07 15:45:50+00:00,VAT invoice for March thanks,email,service_request,billing_payments,Pro,14
+ND-2025-000947,2025-05-29 11:25:45+00:00,Webhooks not firing.,email,incident,integrations,Pro,15
+ND-2025-001039,2025-06-13 08:50:50+00:00,Would like to discuss reseller partnership opportunities,email,service_request,other,Free,0
+ND-2025-000524,2025-03-24 10:40:05+00:00,Add user to Polaris,email,service_request,account_admin,Standard,7
+ND-2025-002247,2025-12-17 13:15:11+00:00,Cannot export Widget A to image.,email,service_request,data_reporting,Pro,11
+ND-2025-000881,2025-05-15 11:25:15+00:00,Visual bug in header.,email,incident,bug,Pro,11
+ND-2025-001754,2025-09-07 13:20:20+00:00,Assign admin role to user,phone,service_request,access_permissions,Standard,7
+ND-2025-001901,2025-10-01 15:30:22+00:00,Cannot access system error 403.,phone,incident,access_permissions,Standard,2
+ND-2025-000043,2025-01-15 08:40:00+00:00,Guide me through the dashboard setup please,webchat,service_request,how_to_training,Standard,1
+ND-2025-001127,2025-06-30 09:00:55+00:00,Is Orbit ID compatible with Azure AD,email,service_request,security_privacy,Pro,9
+ND-2025-000552,2025-03-29 15:20:45+00:00,VAT receipt thanks,email,service_request,billing_payments,Pro,13
+ND-2025-001320,2025-07-31 15:10:40+00:00,Webhooks not firing.,webchat,incident,integrations,Pro,21
+ND-2025-000645,2025-04-14 11:35:00+00:00,CSV export is empty for the last week,email,incident,bug,Standard,21
+ND-2025-001852,2025-10-16 14:30:33+00:00,When is the mandatory MFA rolling out?,email,service_request,security_privacy,Pro,20
+ND-2025-001490,2025-08-30 14:30:15+00:00,API returning 500 error on valid request.,email,incident,integrations,Standard,20
+ND-2025-002311,2025-12-19 08:45:11+00:00,Cancel subscription.,email,service_request,account_admin,Standard,9
+ND-2025-002306,2025-12-24 09:15:33+00:00,Site is down 503 Service Unavailable.,email,incident,performance_outage,Enterprise,60
+ND-2025-000625,2025-04-07 15:00:00+00:00,Lost phone need MFA reset for Orbit ID immediately,webchat,incident,access_permissions,Enterprise,55
+ND-2025-002320,2025-12-13 11:15:33+00:00,Cancelling due to budget cuts.,email,service_request,account_admin,Pro,10
+ND-2025-000555,2025-03-30 12:25:00+00:00,VAT receipt required,email,service_request,billing_payments,Pro,19
+ND-2025-001348,2025-07-28 09:15:00+00:00,Xero API outage.,email,incident,integrations,Enterprise,38
+ND-2025-002266,2025-12-03 16:15:45+00:00,PDF export cuts off the bottom of the chart.,email,service_request,data_reporting,Pro,14
+ND-2025-001749,2025-09-27 10:45:15+00:00,Filter isn't working on the report,email,service_request,data_reporting,Standard,12
+ND-2025-001261,2025-07-16 13:45:50+00:00,HubSpot sync timing out repeatedly.,webchat,incident,integrations,Pro,30
+ND-2025-001110,2025-06-25 15:55:00+00:00,Reports timing out after 60 seconds,email,incident,performance_outage,Enterprise,50
+ND-2025-000646,2025-04-14 15:00:00+00:00,Can't add user says seat limit reached,phone,service_request,billing_payments,Pro,9
+ND-2025-001867,2025-10-21 12:55:18+00:00,Why do I have to enter a code every time??,phone,incident,security_privacy,Pro,22
+ND-2025-000861,2025-05-11 11:30:30+00:00,"Mobile app is unusable, keeps freezing.",phone,incident,bug,Enterprise,32
+ND-2025-000931,2025-05-26 10:10:05+00:00,System performance is poor.,phone,incident,performance_outage,Standard,22
+ND-2025-001899,2025-10-31 14:50:10+00:00,Still waiting on domain verification for Orbit ID.,webchat,incident,access_permissions,Standard,5
+ND-2025-001805,2025-10-02 08:30:45+00:00,Potential vulnerability found in the Polaris Board export widget headers.,email,incident,security_privacy,Enterprise,60
+ND-2025-001226,2025-07-07 13:40:10+00:00,Data sync is timing out for the third time this week.,email,incident,integrations,Pro,28
+ND-2025-002227,2025-12-12 08:15:55+00:00,Please process account closure before renewal date.,email,service_request,account_admin,Pro,19
+ND-2025-000017,2025-01-07 09:05:22+00:00,Locked out of my account after too many tries,webchat,incident,access_permissions,Standard,2
+ND-2025-001889,2025-10-28 12:40:18+00:00,How do I download all my data?,webchat,service_request,security_privacy,Pro,10
+ND-2025-000469,2025-03-13 10:15:10+00:00,Locked out of the admin account cannot run payroll reports,phone,incident,account_admin,Enterprise,32
+ND-2025-001665,2025-09-16 12:30:10+00:00,Need VAT receipt for last month's subscription,in_app,service_request,billing_payments,Pro,14
+ND-2025-001367,2025-07-16 16:05:00+00:00,API auth error.,webchat,incident,integrations,Pro,24
+ND-2025-001479,2025-08-27 08:50:50+00:00,Gateway timeout 504 on all API requests.,email,incident,performance_outage,Enterprise,50
+ND-2025-001755,2025-09-09 15:05:55+00:00,Error saving Polaris Board configuration,email,incident,bug,Enterprise,21
+ND-2025-000085,2025-01-29 08:50:45+00:00,Best way to visualize churn data?,email,service_request,how_to_training,Pro,9
+ND-2025-001514,2025-08-22 09:50:00+00:00,OAuth error when connecting HubSpot.,email,incident,integrations,Standard,16
+ND-2025-001624,2025-09-05 12:25:40+00:00,Critical KPI widget missing from executive Polaris Board,in_app,service_request,data_reporting,Enterprise,28
+ND-2025-001652,2025-09-12 11:05:10+00:00,Any examples of sales dashboards for Polaris?,webchat,service_request,how_to_training,Standard,5
+ND-2025-001075,2025-06-23 16:10:55+00:00,Add new user to the team please,email,service_request,account_admin,Standard,12
+ND-2025-002228,2025-12-12 10:30:33+00:00,Urgent export needed CSV format failing.,webchat,service_request,data_reporting,Enterprise,30
+ND-2025-001886,2025-10-27 14:50:20+00:00,High severity: SQL Injection possibility in search bar.,email,incident,security_privacy,Enterprise,50
+ND-2025-000617,2025-04-05 09:20:00+00:00,Requesting audit logs for user activity last month,webchat,service_request,account_admin,Pro,22
+ND-2025-002080,2025-11-25 09:20:15+00:00,Update company name.,email,service_request,account_admin,Standard,11
+ND-2025-000849,2025-05-09 08:20:10+00:00,Database connection error when refreshing large datasets.,email,incident,performance_outage,Enterprise,35
+ND-2025-000054,2025-01-18 15:00:10+00:00,Need a VAT receipt for December,email,incident,billing_payments,Standard,10
+ND-2025-000414,2025-03-02 16:15:55+00:00,Need to update our company address for the invoices,email,service_request,account_admin,Pro,8
+ND-2025-001808,2025-10-02 11:59:02+00:00,We need to enforce MFA on all users for the upcoming audit.,email,service_request,security_privacy,Enterprise,30
+ND-2025-000515,2025-03-22 12:25:20+00:00,VAT invoice needed,email,service_request,billing_payments,Pro,15
+ND-2025-002057,2025-11-18 12:55:20+00:00,Domain verification failed for our email.,webchat,incident,access_permissions,Pro,5
+ND-2025-000727,2025-04-21 11:40:00+00:00,MFA code not working,in_app,incident,access_permissions,Enterprise,20
+ND-2025-000842,2025-05-07 12:45:00+00:00,Formatting is off.,email,incident,bug,Pro,6
+ND-2025-001128,2025-06-03 15:15:30+00:00,Sales contact number please,in_app,service_request,other,Free,1
+ND-2025-000075,2025-01-25 13:30:10+00:00,How to share a board link?,in_app,service_request,how_to_training,Standard,3
+ND-2025-001723,2025-09-06 14:45:50+00:00,Data missing from executive summary Polaris Board,in_app,service_request,data_reporting,Enterprise,29
+ND-2025-002235,2025-12-14 15:30:00+00:00,System is sluggish when running large reports.,email,incident,performance_outage,Enterprise,45
+ND-2025-000103,2025-01-13 13:30:55+00:00,Looking for video guides on advanced filtering,webchat,service_request,how_to_training,Standard,2
+ND-2025-001361,2025-07-10 10:45:00+00:00,Timeout error.,email,incident,integrations,Pro,35
+ND-2025-000488,2025-03-17 09:00:05+00:00,Exporting the KPI report crashes the browser,email,incident,bug,Enterprise,23
+ND-2025-001247,2025-07-13 09:20:45+00:00,Text overlapping on the settings page in Chrome.,email,incident,bug,Standard,7
+ND-2025-000101,2025-01-11 08:50:35+00:00,Hi how do i use this,in_app,service_request,how_to_training,Standard,1
+ND-2025-001613,2025-09-03 10:25:15+00:00,Why are my Polaris timestamps in UTC and not BST?,webchat,service_request,data_reporting,Pro,7
+ND-2025-002274,2025-12-07 12:40:10+00:00,I want to delete my account.,webchat,service_request,account_admin,Standard,2
+ND-2025-001426,2025-08-07 15:30:30+00:00,SEO services for your website.,webchat,service_request,other,Free,0
+ND-2025-000892,2025-05-18 09:30:50+00:00,Icon missing.,email,incident,bug,Pro,5
+ND-2025-002291,2025-12-13 16:45:22+00:00,Received dunning email but I paid.,email,service_request,billing_payments,Standard,15
+ND-2025-001316,2025-07-30 16:40:00+00:00,500 error on the main dashboard.,email,incident,performance_outage,Standard,15
+ND-2025-000801,2025-05-01 09:22:10+00:00,Where has the export button gone on the new widget interface?,webchat,service_request,how_to_training,Standard,3
+ND-2025-001914,2025-10-08 14:20:12+00:00,Header injection vulnerability in report emailer.,email,incident,security_privacy,Enterprise,40
+ND-2025-002236,2025-12-15 09:00:22+00:00,Cancelling service thanks.,email,service_request,account_admin,Standard,12
+ND-2025-002086,2025-11-26 15:45:00+00:00,Need last month's audit logs.,email,service_request,account_admin,Pro,8
+ND-2025-001457,2025-08-19 10:20:00+00:00,Chart not displaying the correct currency symbol.,webchat,service_request,data_reporting,Standard,11
+ND-2025-001659,2025-09-15 08:50:55+00:00,Timezone setting on Polaris Board seems ignored,email,service_request,data_reporting,Pro,18
+ND-2025-000731,2025-04-25 10:50:00+00:00,App crash on profile screen,in_app,incident,bug,Pro,13
+ND-2025-001839,2025-10-12 09:30:22+00:00,Audit logs showing blank for yesterday.,in_app,service_request,account_admin,Enterprise,25
+ND-2025-002001,2025-11-01 10:05:45+00:00,Orbit ID isn't recognising my password after the update.,webchat,service_request,access_permissions,Free,3
+ND-2025-002115,2025-11-09 13:55:10+00:00,SSO setup failing.,email,incident,access_permissions,Enterprise,28
+ND-2025-000603,2025-04-01 13:20:00+00:00,The save button on the widget config screen is greyed out,phone,incident,bug,Free,2
+ND-2025-001850,2025-10-16 09:15:44+00:00,Our security team needs the logs from the Xero Connector syncs.,email,service_request,account_admin,Enterprise,48
+ND-2025-001122,2025-06-20 15:55:00+00:00,Setup guide for newbies,in_app,service_request,how_to_training,Free,4
+ND-2025-001060,2025-06-19 10:40:40+00:00,Clarification on Enterprise tier pricing per seat,webchat,service_request,billing_payments,Pro,15
+ND-2025-000836,2025-05-06 13:20:15+00:00,Scheduled reports didn't send this morning.,email,incident,bug,Standard,18
+ND-2025-001663,2025-09-16 09:00:25+00:00,Visual glitch on Chrome when viewing Polaris Board,email,incident,bug,Pro,11
+ND-2025-000494,2025-03-18 10:50:35+00:00,Text overlapping on mobile view,email,incident,bug,Standard,8
+ND-2025-000584,2025-03-05 14:10:35+00:00,VAT receipt please,email,service_request,billing_payments,Pro,12
+ND-2025-001888,2025-10-28 10:15:33+00:00,Turn off marketing emails thanks.,email,service_request,account_admin,Standard,15
+ND-2025-000460,2025-03-11 11:55:25+00:00,New Finance Director needs to receive the billing emails,phone,service_request,account_admin,Enterprise,14
+ND-2025-000498,2025-03-19 09:10:15+00:00,Duplicate charge on my statement,email,incident,billing_payments,Pro,3
+ND-2025-001675,2025-09-19 08:45:00+00:00,Cannot view Polaris widgets on Android tablet,phone,incident,bug,Enterprise,30
+ND-2025-000402,2025-03-01 09:30:45+00:00,The invoice amount for the Enterprise tier doesn't look right for March,email,incident,billing_payments,Enterprise,6
+ND-2025-000832,2025-05-06 09:00:20+00:00,Unrecognized login alert from Orbit ID.,webchat,incident,security_privacy,Enterprise,38
+ND-2025-000911,2025-05-22 09:25:45+00:00,Footer is gone.,email,incident,bug,Pro,8
+ND-2025-000170,2025-01-21 13:00:00+00:00,Edge browser not rendering charts correctly,webchat,incident,bug,Pro,9
+ND-2025-002283,2025-12-11 09:05:45+00:00,Terminate account ND-ENT-991.,email,service_request,account_admin,Enterprise,33
+ND-2025-001369,2025-07-18 10:55:00+00:00,Rate limit hit.,email,incident,integrations,Standard,12
+ND-2025-001841,2025-10-13 08:50:45+00:00,My screen went black and then I was logged out of Orbit ID.,webchat,incident,security_privacy,Pro,33
+ND-2025-000120,2025-01-30 10:15:50+00:00,Adding a board,email,service_request,how_to_training,Standard,1
+ND-2025-001758,2025-09-15 12:20:45+00:00,HubSpot connector timed out during sync,webchat,incident,integrations,Pro,15
+ND-2025-000686,2025-04-26 12:50:00+00:00,Menu bar overlaps the content on small screens,email,incident,bug,Standard,10
+ND-2025-002287,2025-12-12 10:55:00+00:00,MFA code not arriving for Orbit ID.,phone,incident,access_permissions,Pro,12
+ND-2025-002028,2025-11-10 14:55:03+00:00,Need to add a consultant to the platform.,in_app,service_request,account_admin,Standard,20
+ND-2025-002251,2025-12-18 11:10:05+00:00,Salesforce fields not mapping correctly to Polaris.,email,incident,integrations,Pro,13
+ND-2025-002027,2025-11-10 11:20:12+00:00,Filter not working on the sales widget.,email,incident,data_reporting,Pro,5
+ND-2025-002234,2025-12-14 12:05:30+00:00,Best way to configure year-end reports?,webchat,service_request,how_to_training,Pro,4
+ND-2025-000048,2025-01-16 14:45:30+00:00,Timestamps on the board are in UTC not GMT,email,incident,data_reporting,Standard,5
+ND-2025-000852,2025-05-09 10:30:25+00:00,Buttons overlapping text.,email,incident,bug,Free,3
+ND-2025-000013,2025-01-06 08:30:45+00:00,I can't figure out how to create a dashboard,email,service_request,how_to_training,Standard,1
+ND-2025-001327,2025-07-07 08:45:00+00:00,Data mapping is off for Salesforce.,email,incident,integrations,Pro,22
+ND-2025-002077,2025-11-24 10:30:40+00:00,Screen freezes when I click the widget.,in_app,incident,bug,Standard,6
+ND-2025-001656,2025-09-13 11:25:45+00:00,Can you walk me through the Polaris dashboard basics?,webchat,service_request,how_to_training,Free,3
+ND-2025-001254,2025-07-15 09:10:40+00:00,Webhooks from Stripe are failing consistently.,email,incident,integrations,Pro,36
+ND-2025-000174,2025-01-25 09:05:20+00:00,Need help to begin,email,service_request,how_to_training,Standard,1
+ND-2025-002240,2025-12-16 08:10:45+00:00,Hubspot token invalid error.,email,incident,integrations,Pro,22
+ND-2025-002312,2025-12-05 12:00:00+00:00,Pricing for Pro tier.,email,service_request,billing_payments,Free,3
+ND-2025-001240,2025-07-11 09:00:05+00:00,Xero sync is down.,email,incident,integrations,Pro,22
+ND-2025-002029,2025-11-11 08:15:30+00:00,API is returning 429 errors on the connector.,email,incident,integrations,Enterprise,30
+ND-2025-001472,2025-08-24 12:05:55+00:00,How to define custom KPIs in Polaris?,email,service_request,data_reporting,Free,3
+ND-2025-000480,2025-03-15 12:20:45+00:00,Send VAT receipt,email,service_request,billing_payments,Pro,11
+ND-2025-000542,2025-03-27 15:30:35+00:00,VAT receipt thanks,email,service_request,billing_payments,Pro,11
+ND-2025-001235,2025-07-09 15:55:20+00:00,Custom fields from HubSpot aren't showing in Polaris widgets.,email,incident,integrations,Standard,6
+ND-2025-000822,2025-05-04 08:55:12+00:00,Running reports is timing out; spinner just keeps spinning.,email,incident,performance_outage,Enterprise,20
+ND-2025-001870,2025-10-22 11:40:30+00:00,Can I invite a user with read-only access?,webchat,service_request,access_permissions,Standard,4
+ND-2025-001625,2025-09-05 13:50:00+00:00,Need to change the email for invoices,email,service_request,account_admin,Standard,10
+ND-2025-001017,2025-06-06 13:20:18+00:00,Webhooks from Shopify connector are not firing since update,email,incident,integrations,Pro,28
+ND-2025-001679,2025-09-20 09:20:30+00:00,Manager cannot edit the Polaris Board I created,in_app,service_request,data_reporting,Standard,12
+ND-2025-000098,2025-01-08 09:10:05+00:00,How do I archive an old Polaris Board?,email,service_request,how_to_training,Standard,3
+ND-2025-001612,2025-09-03 09:10:05+00:00,CSV export from Polaris widget has missing columns,email,incident,bug,Standard,12
+ND-2025-001454,2025-08-18 11:15:45+00:00,Configuring the new Polaris widget need help.,webchat,service_request,how_to_training,Standard,4
+ND-2025-002154,2025-11-30 09:30:10+00:00,Stop emails.,webchat,service_request,account_admin,Free,2
+ND-2025-000687,2025-04-26 15:00:00+00:00,Upgrade to Enterprise quote please,phone,service_request,billing_payments,Pro,14
+ND-2025-001118,2025-06-12 11:15:40+00:00,Partnership inquiry,email,service_request,other,Free,0
+ND-2025-001488,2025-08-30 09:20:25+00:00,Hit seat limit need to add more.,webchat,service_request,billing_payments,Standard,8
+ND-2025-001220,2025-07-05 12:15:00+00:00,Interested in upgrading to Enterprise for better API limits.,email,service_request,other,Free,0
+ND-2025-001000,2025-06-02 09:15:22+00:00,Invoice for May shows VAT at 0% but we are UK based needs fixing,email,service_request,billing_payments,Pro,24
+ND-2025-001126,2025-06-28 16:35:20+00:00,Integration with Xero stopped working today,webchat,incident,integrations,Enterprise,32
+ND-2025-002060,2025-11-19 11:20:45+00:00,I've been charged twice for this month's subscription.,phone,incident,billing_payments,Pro,18
+ND-2025-001627,2025-09-06 09:30:12+00:00,Numbers on Polaris don't match Xero export,email,service_request,data_reporting,Standard,16
+ND-2025-000682,2025-04-25 11:40:00+00:00,Data gap in the sales report for yesterday,email,incident,data_reporting,Pro,16
+ND-2025-001028,2025-06-09 15:10:45+00:00,Question about enforcing MFA for all standard users,email,service_request,security_privacy,Pro,25
+ND-2025-002237,2025-12-15 10:20:11+00:00,Okta SSO configuration failing for new users.,phone,incident,access_permissions,Enterprise,10
+ND-2025-000130,2025-01-11 11:50:40+00:00,Font rendering issue on Chrome,email,incident,bug,Standard,5
+ND-2025-001005,2025-06-03 09:55:01+00:00,Need to remove a user who left the company from our org settings,email,service_request,account_admin,Standard,15
+ND-2025-001238,2025-07-10 12:40:30+00:00,We are hitting API limits with the new Xero connector update.,email,incident,integrations,Pro,30
+ND-2025-001931,2025-10-22 09:15:30+00:00,Add user to account.,email,service_request,account_admin,Standard,20
+ND-2025-002106,2025-11-04 08:35:45+00:00,Data missing from executive dashboard.,in_app,incident,data_reporting,Enterprise,19
+ND-2025-002254,2025-12-19 09:00:00+00:00,Missing data points in year end report.,email,service_request,data_reporting,Standard,7
+ND-2025-001446,2025-08-15 08:55:30+00:00,Stop sending me so many marketing emails please.,email,service_request,account_admin,Standard,13
+ND-2025-000736,2025-04-29 14:00:00+00:00,Change me to admin,email,service_request,access_permissions,Standard,9
+ND-2025-001634,2025-09-08 09:15:20+00:00,Excel export formatting is all over the place,email,service_request,data_reporting,Pro,13
+ND-2025-000669,2025-04-22 08:55:00+00:00,Sync failed 3 times in a row for Salesforce,in_app,incident,integrations,Enterprise,27
+ND-2025-000037,2025-01-13 10:10:12+00:00,Adding a Polaris Board seems complicated,email,service_request,how_to_training,Standard,1
+ND-2025-002161,2025-11-05 08:55:05+00:00,Help locked out.,phone,incident,access_permissions,Free,3
+ND-2025-002272,2025-12-06 13:50:45+00:00,Upgrade to Enterprise for 2026.,in_app,service_request,billing_payments,Pro,6
+ND-2025-000482,2025-03-15 15:35:35+00:00,VAT invoice for records,email,service_request,billing_payments,Pro,14
+ND-2025-002152,2025-11-29 10:40:20+00:00,Delete user.,email,service_request,account_admin,Standard,18
+ND-2025-001837,2025-10-11 08:20:12+00:00,forgot password.,webchat,service_request,access_permissions,Standard,1
+ND-2025-001041,2025-06-13 13:30:20+00:00,Getting random errors when clicking between tabs,email,incident,performance_outage,Standard,26
+ND-2025-000716,2025-04-10 08:15:00+00:00,Need VAT invoice for March,webchat,service_request,billing_payments,Pro,12
+ND-2025-000045,2025-01-15 13:25:20+00:00,Change user role from Viewer to Admin,email,service_request,access_permissions,Standard,4
+ND-2025-001402,2025-08-01 10:12:11+00:00,Invoice for August seems to have a duplicate charge for seats.,email,service_request,billing_payments,Free,6
+ND-2025-000007,2025-01-04 08:55:10+00:00,The navigation bar is overlapping my charts,webchat,incident,bug,Standard,2
+ND-2025-000865,2025-05-12 10:50:00+00:00,Overlap on menu items.,email,incident,bug,Pro,10
+ND-2025-001074,2025-06-23 13:45:10+00:00,Admin account locked cannot access settings urgent,webchat,incident,access_permissions,Pro,40
+ND-2025-001068,2025-06-21 13:15:40+00:00,Requesting data portability file for GDPR,email,service_request,security_privacy,Pro,13
+ND-2025-000150,2025-01-31 08:35:20+00:00,Setup help,email,service_request,how_to_training,Standard,1
+ND-2025-001364,2025-07-13 09:50:00+00:00,OAuth token invalid.,email,incident,integrations,Standard,14
+ND-2025-000506,2025-03-20 13:50:35+00:00,App crashing on login,email,incident,bug,Enterprise,20
+ND-2025-000697,2025-04-29 13:50:00+00:00,Salesforce is down is that affecting Northstar?,in_app,incident,integrations,Enterprise,25
+ND-2025-001451,2025-08-17 08:25:30+00:00,Very high latency on the main dashboard right now.,email,incident,performance_outage,Pro,38
+ND-2025-001337,2025-07-17 12:00:00+00:00,Salesforce sync timed out.,phone,incident,integrations,Pro,24
+ND-2025-001941,2025-10-30 08:50:25+00:00,Locked out.,webchat,service_request,access_permissions,Standard,3
+ND-2025-001506,2025-08-14 11:15:00+00:00,Webhook did not fire yesterday.,email,incident,integrations,Standard,22
+ND-2025-000841,2025-05-07 11:15:35+00:00,App closes when I tap 'Connectors'.,email,incident,bug,Standard,4
+ND-2025-001020,2025-06-07 11:10:25+00:00,Charged twice for the same month need a refund on one,phone,service_request,billing_payments,Standard,2
+ND-2025-001278,2025-07-21 09:55:20+00:00,Cannot login to Orbit ID just spins.,phone,incident,performance_outage,Pro,33
+ND-2025-001117,2025-06-10 08:50:05+00:00,Question about ISO 27001 compliance,in_app,service_request,security_privacy,Enterprise,60
+ND-2025-001440,2025-08-13 08:40:10+00:00,Steps to debug a failed connector sync?,in_app,service_request,how_to_training,Standard,8
+ND-2025-002281,2025-12-10 10:35:20+00:00,Salesforce is down affecting Northstar sync.,in_app,incident,integrations,Enterprise,25
+ND-2025-000899,2025-05-19 11:25:45+00:00,Screen looks wrong.,email,incident,bug,Standard,9
+ND-2025-001874,2025-10-23 13:10:44+00:00,Swap licence from Tim to Sarah.,email,service_request,account_admin,Pro,20
+ND-2025-001722,2025-09-04 09:20:10+00:00,How do I delete a widget?,webchat,service_request,how_to_training,Free,2
+ND-2025-000910,2025-05-22 08:40:20+00:00,Critical regression in reporting.,email,incident,bug,Enterprise,40
+ND-2025-002128,2025-11-17 08:30:20+00:00,Remove user.,email,service_request,account_admin,Standard,14
+ND-2025-001057,2025-06-18 11:25:20+00:00,OAuth token for Salesforce invalid keeps popping up,webchat,incident,integrations,Pro,24
+ND-2025-002133,2025-11-19 14:55:25+00:00,Add user.,phone,service_request,account_admin,Pro,21
+ND-2025-000636,2025-04-10 16:15:00+00:00,Formal GDPR deletion request for user ID 4452,email,incident,security_privacy,Enterprise,30

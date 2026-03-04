@@ -205,3 +205,7 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# LLM models (large binary files)
+models/*.gguf
+models/*.bin

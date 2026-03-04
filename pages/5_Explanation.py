@@ -476,7 +476,8 @@ try:
     )
 
     # Display natural language explanation
-    st.markdown("### Why This Priority?")
+
+    st.markdown(f"<h1 style='color:{THEME_COLOUR};'>Why This Priority?</h1>", unsafe_allow_html=True)
     explanation_text = explanation_result.get("explanation", "")
     if explanation_text:
         st.info(explanation_text)
@@ -487,7 +488,7 @@ try:
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown("#### Model Predicted Probabilities")
+        st.markdown(f"<h1 style='color:{THEME_COLOUR};'>Model Predicted Probabilities</h1>", unsafe_allow_html=True)
         fig = create_probability_chart(probabilities)
         st.plotly_chart(fig, use_container_width=True)
 
@@ -498,7 +499,8 @@ try:
             st.warning(f"Model predicts **{predicted_priority}**, actual is **{priority}**")
 
     with col2:
-        st.markdown("#### Top Feature Contributions")
+
+        st.markdown(f"<h1 style='color:{THEME_COLOUR};'>Top Feature Contributions</h1>", unsafe_allow_html=True)
         # Use SHAP-based contributions from explainer
         card_data = explanation_result.get("card_data", {})
         positive_factors = card_data.get("top_positive_factors", [])

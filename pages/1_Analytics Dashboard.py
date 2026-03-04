@@ -58,7 +58,7 @@ st.write('This page looks at key analytics from Northstar Desk data.')
 
 
 
-path = r"C:\Users\barnyrumbold\OneDrive - Kidney Research UK\Desktop\Hackathon\Northstar-Desk-Decision-Support-Tool-\Data\clean.csv"
+path = "Data\clean.csv"
 data = pd.read_csv(path)
 data['csat_score'] = pd.to_numeric(data['csat_score'], errors='coerce')
 

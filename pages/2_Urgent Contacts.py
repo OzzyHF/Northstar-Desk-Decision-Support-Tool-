@@ -6,7 +6,7 @@ st.set_page_config(layout="wide")
 
 THEME_COLOUR = "#597AAC"
 
-path = r"C:\Users\barnyrumbold\OneDrive - Kidney Research UK\Desktop\Hackathon\Northstar-Desk-Decision-Support-Tool-\Data\clean.csv"
+path = "Data\clean.csv"
 data = pd.read_csv(path)
 
 st.markdown(f"<h1 style='color:{THEME_COLOUR};'>Hackathon - Top 10 Urgent Contacts</h1>", unsafe_allow_html=True)

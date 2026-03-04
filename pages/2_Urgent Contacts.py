@@ -8,14 +8,15 @@ THEME_COLOUR = "#597AAC"
 
 
 
-path = "Data\clean.csv"
+path = "results/predictions.csv"
 data = pd.read_csv(path)
 
 
+data["predicted_priority"] = data["predicted_priority"].astype(int)
 st.markdown(f"<h1 style='color:{THEME_COLOUR};'>Hackathon - Top 10 Urgent Contacts</h1>", unsafe_allow_html=True)
 st.write('This page provides a list of those enquiriers that require urgent contact.') 
 
-top10 = data.sort_values("priority", ascending=False).head(10)
+top10 = data.sort_values("predicted_priority", ascending=False).head(10)
 
 
 st.dataframe(top10)

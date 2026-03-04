@@ -24,11 +24,17 @@ y_proba = model.predict_proba(X_test)
 confidence = y_proba.max(axis=1)
 
 # --- Build the output table ---
+labels = ["Low", "Medium", "High", "Urgent"]
+
 preds_df = pd.DataFrame({
     "case_id": X_test_raw["case_id"],
     "actual_priority": y_test.values,
     "predicted_priority": y_pred,
     "confidence": confidence.round(3),
+    "prob_Low": y_proba[:, 0].round(3),
+    "prob_Medium": y_proba[:, 1].round(3),
+    "prob_High": y_proba[:, 2].round(3),
+    "prob_Urgent": y_proba[:, 3].round(3),
 })
 
 # --- Save to CSV ---

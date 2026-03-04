@@ -9,6 +9,13 @@ import logging
 import os
 from typing import Dict, Any, Optional
 
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # dotenv not required if env vars set elsewhere
+
 from .prompts import (
     SYSTEM_PROMPT,
     build_explanation_prompt,

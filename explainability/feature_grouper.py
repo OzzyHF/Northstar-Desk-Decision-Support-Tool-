@@ -40,7 +40,7 @@ class FeatureGrouper:
         self._feature_indices = {}
 
         vocab = self.vectorizer.vocabulary_
-        feature_names = self.vectorizer.get_feature_names_out()
+        self.vectorizer.get_feature_names_out()
 
         # Map each token to its semantic groups
         for group_name, keywords in self.semantic_groups.items():

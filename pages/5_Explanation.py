@@ -7,10 +7,6 @@ Provides interactive UI for:
 - Understanding feature contributions
 """
 
-# Load environment variables first
-from dotenv import load_dotenv
-load_dotenv()
-
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
@@ -19,8 +15,7 @@ import numpy as np
 from pathlib import Path
 
 from explainability.core import ExplainabilityCore
-from explainability.llm_generator import FallbackGenerator
-from explainability.groq_generator import GroqGenerator, create_generator
+from explainability.groq_generator import GroqGenerator
 
 st.set_page_config(
     page_title="Case Explanation",
@@ -395,7 +390,7 @@ if data is None:
     st.stop()
 
 # Sidebar: Case selection
-st.sidebar.markdown(f"### Select Case")
+st.sidebar.markdown("### Select Case")
 
 # Filter options
 priority_filter = st.sidebar.multiselect(
@@ -424,7 +419,7 @@ if not selected_case:
 st.sidebar.markdown("---")
 
 # Sidebar: Model selection
-st.sidebar.markdown(f"### Model Selection")
+st.sidebar.markdown("### Model Selection")
 
 # Get available models (only show those that exist)
 available_model_names = [

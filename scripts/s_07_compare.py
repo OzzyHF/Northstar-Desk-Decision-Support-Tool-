@@ -14,11 +14,14 @@ y_test = pd.read_csv(os.path.join(SPLITS_DIR, "y_test.csv")).squeeze()
 
 # Models to compare
 model_configs = {
-    "Decision Tree": os.path.join(MODEL_DIR, "dt_model.pkl"),
-    "Random Forest": os.path.join(MODEL_DIR, "rf_model.pkl"),
+    "Logistic Regression": os.path.join(MODEL_DIR, "lr_model.pkl"),
+    "Decision Tree":       os.path.join(MODEL_DIR, "dt_model.pkl"),
+    "Random Forest":       os.path.join(MODEL_DIR, "rf_model.pkl"),
 }
 
-rows = []
+target_names = ["Low", "Medium", "High", "Urgent"]
+summary_rows = []
+detail_rows = []
 
 for name, model_path in model_configs.items():
     model  = joblib.load(model_path)
@@ -26,26 +29,44 @@ for name, model_path in model_configs.items():
 
     report = classification_report(
         y_test, y_pred,
-        target_names=["Low", "Medium", "High", "Urgent"],
+        target_names=target_names,
         output_dict=True
     )
 
     print(f"\n--- {name} ---")
-    print(classification_report(y_test, y_pred, target_names=["Low", "Medium", "High", "Urgent"]))
+    print(classification_report(y_test, y_pred, target_names=target_names))
 
-    rows.append({
+    # Per-class detail rows
+    for cls in target_names:
+        detail_rows.append({
+            "Model":     name,
+            "Class":     cls,
+            "Precision": round(report[cls]["precision"], 3),
+            "Recall":    round(report[cls]["recall"], 3),
+            "F1-Score":  round(report[cls]["f1-score"], 3),
+            "Support":   int(report[cls]["support"]),
+        })
+
+    # Summary row
+    summary_rows.append({
         "Model":          name,
+        "Accuracy":       round(report["accuracy"], 3),
         "Macro F1":       round(report["macro avg"]["f1-score"], 3),
         "Weighted F1":    round(report["weighted avg"]["f1-score"], 3),
         "Urgent Recall":  round(report["Urgent"]["recall"], 3),
         "Urgent F1":      round(report["Urgent"]["f1-score"], 3),
     })
 
-summary = pd.DataFrame(rows)
-
-print("\n=== Model Comparison ===")
-print(summary.to_string(index=False))
-
 os.makedirs(OUTPUT_DIR, exist_ok=True)
-summary.to_csv(os.path.join(OUTPUT_DIR, "model_comparison.csv"), index=False)
-print(f"\nSaved to {OUTPUT_DIR}/model_comparison.csv")
+
+# Per-class results
+detail_df = pd.DataFrame(detail_rows)
+detail_df.to_csv(os.path.join(OUTPUT_DIR, "classification_reports.csv"), index=False)
+print(f"\nSaved per-class results to {OUTPUT_DIR}/classification_reports.csv")
+
+# Summary comparison
+summary_df = pd.DataFrame(summary_rows)
+print("\n=== Model Comparison ===")
+print(summary_df.to_string(index=False))
+summary_df.to_csv(os.path.join(OUTPUT_DIR, "model_comparison.csv"), index=False)
+print(f"Saved to {OUTPUT_DIR}/model_comparison.csv")

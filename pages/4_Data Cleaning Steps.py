@@ -8,17 +8,17 @@ import seaborn as sns
 st.set_page_config(layout="wide")
 
 
-THEME_COLOUR = "#707275"
+THEME_COLOUR = "#597AAC"
 
 
-st.markdown(f"<h1 style='color:{THEME_COLOUR};'>Hackathon</h1>", unsafe_allow_html=True)
-st.write('This page provides an overview of the data cleaning steps used and general assumptions made.')
+st.markdown(f"<h1 style='color:{THEME_COLOUR};'>Hackathon - Data Cleaning Steps</h1>", unsafe_allow_html=True)
+st.write('This page provides an overview of the data, and data manipulation prior to training.')
 
 
 col1, col2 = st.columns(2)
 with col1:
-    st.markdown(f"<h2 style='color:{THEME_COLOUR};'>Correlation Matrix</h2>", unsafe_allow_html=True)
-    path = "Data\clean.csv"
+    st.markdown(f"<h2 style='color:{THEME_COLOUR};'>1. Correlation Matrix</h2>", unsafe_allow_html=True)
+    path = r"C:\Users\barnyrumbold\OneDrive - Kidney Research UK\Desktop\Hackathon\Northstar-Desk-Decision-Support-Tool-\Data\clean.csv"
     d = pd.read_csv(path)
     num_df = d.select_dtypes(include="number")
     corr = num_df.corr(method="pearson")
@@ -60,17 +60,12 @@ with col1:
     plt.tight_layout()
 
     st.pyplot(fig)
-
-with col2:
-
-
-    THEME_COLOUR = "#707275"
-
-    st.markdown(f"<h1 style='color:{THEME_COLOUR};'>Data Cleaning & Preprocessing Overview</h1>", unsafe_allow_html=True)
-
+    
+    
     # 2. Initial Data
-    st.subheader("2. Initial Data for Model")
-    st.write("**Note:** This is the minimum set of data. Further exploration may reveal additional features to include.")
+
+    st.markdown(f"<h2 style='color:{THEME_COLOUR};'>2. Data Split</h2>", unsafe_allow_html=True)
+
 
     st.write("**Target Variable (n=1):**")
     st.write("- `priority`")
@@ -84,9 +79,11 @@ with col2:
     st.write("- `plan_tier`")
     st.write("- `category`")
 
+with col2:
 
     # 3. Cleaning (Before Split)
-    st.subheader("3. Cleaning (Before Train-Test Split)")
+ 
+    st.markdown(f"<h2 style='color:{THEME_COLOUR};'>3. Cleaning (Before Train-Test Split)</h2>", unsafe_allow_html=True)
     st.write("Cleaning steps applied to columns before splitting the dataset:")
 
     st.write("**case_summary**: Fix column-shift rows, convert to lowercase, strip whitespace")
@@ -100,14 +97,16 @@ with col2:
 
 
     # 4. Train–Test Split
-    st.subheader("4. Train–Test Split")
+
+    st.markdown(f"<h2 style='color:{THEME_COLOUR};'>4. Train–Test Split</h2>", unsafe_allow_html=True)
     st.write("The dataset was split into training and test sets, stratified by `priority` to preserve class distribution.")
     st.write("- Training set: 80%")
     st.write("- Test set: 20%")
 
 
     # 5. Preprocessing (After Split)
-    st.subheader("5. Preprocessing (After Split)")
+
+    st.markdown(f"<h2 style='color:{THEME_COLOUR};'>5. Preprocessing (After Split)</h2>", unsafe_allow_html=True)
     st.write("Preprocessing steps were fitted on the training set only and then applied to the test set.")
 
     st.write("**case_summary**: TF-IDF vectorization")
@@ -118,3 +117,7 @@ with col2:
     st.write("**customer_tenure_months**: Bin numerical values, then one-hot encode")
     st.write("**created_at**: Extract hour + day_of_week, then one-hot encode")
     st.write("**priority**: Ordinal encoding: Low=0, Medium=1, High=2, Urgent=3")
+st.markdown(
+    "[View Project on GitHub](https://github.com/OzzyHF/Northstar-Desk-Decision-Support-Tool-)",
+    unsafe_allow_html=True
+)

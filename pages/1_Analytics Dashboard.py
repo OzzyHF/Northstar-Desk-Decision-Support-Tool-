@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 st.set_page_config(layout="wide")
-THEME_COLOUR = "#707275"
+THEME_COLOUR = "#597AAC"
 st.markdown(f"""
 <style>
 
@@ -52,9 +52,9 @@ div[data-testid="column"] {{
 
 
 
-st.markdown(f"<h1 style='color:{THEME_COLOUR};'>Hackathon</h1>", unsafe_allow_html=True)
+st.markdown(f"<h1 style='color:{THEME_COLOUR};'>Hackathon - Analytics Dashboard</h1>", unsafe_allow_html=True)
 
-st.write('This page looks at key analytics from Northstar Desk data') 
+st.write('This page looks at key analytics from Northstar Desk data.') 
 
 
 
@@ -73,7 +73,7 @@ sla_met = (data['resolution_time_hours'] <= data['sla_target_hours']).mean() * 1
 
 col1, col2, col3, col4 = st.columns(4)
 
-col1.metric("Total Cases", total_cases)
+col1.metric("Total Cases", total_cases, delta_color='blue')
 col2.metric("Open Cases", open_cases)
 col3.metric("% Within SLA", f"{sla_met:.1f}%")
 col4.metric("Escalation Rate", f"{escalation_rate:.1f}%")
@@ -125,3 +125,8 @@ with col2:
     )
 
     st.plotly_chart(fig2, use_container_width=True)
+
+st.markdown(
+    "[View Project on GitHub](https://github.com/OzzyHF/Northstar-Desk-Decision-Support-Tool-)",
+    unsafe_allow_html=True
+)

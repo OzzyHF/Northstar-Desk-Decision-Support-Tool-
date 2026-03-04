@@ -1,0 +1,15 @@
+# Local development requirements (includes platform-specific packages)
+# Use this for local development: pip install -r requirements-local.txt
+
+-r requirements.txt
+
+# LLM for local explanation generation (Windows pre-built wheel)
+llama-cpp-python==0.2.90
+
+# Notebooks (optional)
+jupyterlab>=4.0.0
+ipykernel>=6.25.0
+
+# Development tools
+ruff>=0.1.0
+pytest>=7.4.0

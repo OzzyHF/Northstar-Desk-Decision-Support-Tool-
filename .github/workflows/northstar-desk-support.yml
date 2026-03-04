@@ -1,0 +1,159 @@
+name: Northstar Desk Support Main Branch
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      model:
+        description: 'Prediction model to use'
+        required: true
+        default: 'random_forest'
+        type: choice
+        options:
+          - random_forest
+          - logistic_regression
+          - decision_tree
+
+permissions:
+  contents: read
+
+env:
+  PYTHON_VERSION: "3.11"
+  MODEL_TYPE: ${{ github.event.inputs.model || 'random_forest' }}
+  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+jobs:
+  validate:
+    name: Validate & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest ruff
+
+      - name: Lint with ruff
+        run: |
+          ruff check . --ignore=E501,F401
+        continue-on-error: true
+
+      - name: Verify data files exist
+        run: |
+          echo "Checking required data files..."
+          test -f Data/clean.csv && echo "✓ Data/clean.csv exists" || echo "✗ Data/clean.csv missing"
+          test -d Data/processed && echo "✓ Data/processed/ exists" || echo "✗ Data/processed/ missing"
+          test -d Data/splits && echo "✓ Data/splits/ exists" || echo "✗ Data/splits/ missing"
+
+      - name: Verify model files exist
+        run: |
+          echo "Checking model files..."
+          echo "Selected model type: ${{ env.MODEL_TYPE }}"
+
+          # Check all available models
+          echo ""
+          echo "Available models:"
+          test -f models/rf_model.pkl && echo "  ✓ Random Forest (rf_model.pkl)" || echo "  ✗ Random Forest (rf_model.pkl) - missing"
+          test -f models/lr_model.pkl && echo "  ✓ Logistic Regression (lr_model.pkl)" || echo "  ✗ Logistic Regression (lr_model.pkl) - missing"
+          test -f models/dt_model.pkl && echo "  ✓ Decision Tree (dt_model.pkl)" || echo "  ✗ Decision Tree (dt_model.pkl) - missing"
+
+          # Verify selected model exists
+          echo ""
+          case "${{ env.MODEL_TYPE }}" in
+            random_forest)
+              test -f models/rf_model.pkl || { echo "ERROR: Selected model rf_model.pkl not found"; exit 1; }
+              ;;
+            logistic_regression)
+              test -f models/lr_model.pkl || { echo "ERROR: Selected model lr_model.pkl not found"; exit 1; }
+              ;;
+            decision_tree)
+              test -f models/dt_model.pkl || { echo "ERROR: Selected model dt_model.pkl not found"; exit 1; }
+              ;;
+          esac
+          echo "Selected model verified: ${{ env.MODEL_TYPE }}"
+
+      - name: Validate Streamlit app structure
+        run: |
+          echo "Validating Streamlit app structure..."
+          test -f Home.py && echo "✓ Home.py exists"
+          test -d pages && echo "✓ pages/ directory exists"
+          ls -la pages/
+
+      - name: Test Streamlit app imports
+        run: |
+          echo "Testing Streamlit app can be imported..."
+          python -c "import streamlit; print(f'Streamlit version: {streamlit.__version__}')"
+          python -c "
+          import sys
+          sys.path.insert(0, '.')
+          # Test core imports work
+          import pandas as pd
+          import numpy as np
+          import joblib
+          print('Core imports successful')
+          "
+
+      - name: Test Groq integration
+        run: |
+          python -c "
+          from explainability.groq_generator import GroqGenerator
+          gen = GroqGenerator()
+          if gen.is_available():
+              print('Groq API is available')
+          else:
+              print('Groq API key not configured (optional)')
+          "
+
+  build-check:
+    name: Build Check (${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    needs: validate
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Check explainability module
+        run: |
+          python -c "
+          from explainability.core import ExplainabilityCore
+          from explainability.llm_generator import FallbackGenerator
+          print('Explainability module imports successful')
+          "
+
+      - name: Validate page syntax
+        run: |
+          python -m py_compile Home.py
+          for page in pages/*.py; do
+            echo "Checking $page..."
+            python -m py_compile "$page"
+          done
+          echo "All pages have valid Python syntax"

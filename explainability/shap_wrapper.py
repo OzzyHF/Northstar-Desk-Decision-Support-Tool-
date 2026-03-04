@@ -142,10 +142,14 @@ class SHAPExplainer:
         if X.ndim == 1:
             X = X.reshape(1, -1)
 
-        shap_values = self.explainer.shap_values(
-            X,
-            check_additivity=SHAP_CONFIG["check_additivity"],
-        )
+        # check_additivity only supported by TreeExplainer
+        if self.explainer_type == "tree":
+            shap_values = self.explainer.shap_values(
+                X,
+                check_additivity=SHAP_CONFIG["check_additivity"],
+            )
+        else:
+            shap_values = self.explainer.shap_values(X)
 
         return shap_values
 

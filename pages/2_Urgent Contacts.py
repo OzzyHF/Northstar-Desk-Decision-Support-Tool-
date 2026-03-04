@@ -20,7 +20,7 @@ top10 = data.sort_values("predicted_priority", ascending=False).head(10)
 
 
 st.dataframe(top10)
-st.table()
+
 st.markdown(
     "[View Project on GitHub](https://github.com/OzzyHF/Northstar-Desk-Decision-Support-Tool-)",
     unsafe_allow_html=True

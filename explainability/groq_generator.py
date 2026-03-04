@@ -9,13 +9,6 @@ import logging
 import os
 from typing import Dict, Any, Optional
 
-# Load environment variables from .env file
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    pass  # dotenv not required if env vars set elsewhere
-
 from .prompts import (
     SYSTEM_PROMPT,
     build_explanation_prompt,
@@ -24,7 +17,28 @@ from .prompts import (
 )
 from .structured_output import StructuredOutputBuilder
 
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # dotenv not required if env vars set elsewhere
+
 logger = logging.getLogger(__name__)
+
+
+def get_groq_api_key() -> Optional[str]:
+    """Get Groq API key from Streamlit secrets or environment variables."""
+    # Try Streamlit secrets first (for Streamlit Cloud)
+    try:
+        import streamlit as st
+        if hasattr(st, "secrets") and "GROQ_API_KEY" in st.secrets:
+            return st.secrets["GROQ_API_KEY"]
+    except Exception:
+        pass
+
+    # Fall back to environment variable
+    return os.environ.get("GROQ_API_KEY")
 
 
 class GroqGenerator:
@@ -50,10 +64,10 @@ class GroqGenerator:
         Initialize the Groq generator.
 
         Args:
-            api_key: Groq API key (defaults to GROQ_API_KEY env var)
+            api_key: Groq API key (defaults to GROQ_API_KEY from secrets/env)
             model: Model to use (defaults to llama-3.1-8b-instant)
         """
-        self.api_key = api_key or os.environ.get("GROQ_API_KEY")
+        self.api_key = api_key or get_groq_api_key()
         self.model = model or self.MODELS[0]
         self.client = None
         self._available = None

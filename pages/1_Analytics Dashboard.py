@@ -58,7 +58,7 @@ st.write('This page looks at key analytics from Northstar Desk data.')
 
 
 
-path = "Data\clean.csv"
+path = "Data/clean.csv"
 data = pd.read_csv(path)
 data['csat_score'] = pd.to_numeric(data['csat_score'], errors='coerce')
 
@@ -67,7 +67,7 @@ open_cases = len(data[data['status'] == 'open'])
 avg_response = data['first_response_time_hours'].mean()
 avg_resolution = data['resolution_time_hours'].mean()
 avg_csat = data['csat_score'].mean()
-escalation_rate = (data['escalated'] == True).mean() * 100
+escalation_rate = (data['escalated']).mean() * 100
 
 sla_met = (data['resolution_time_hours'] <= data['sla_target_hours']).mean() * 100
 

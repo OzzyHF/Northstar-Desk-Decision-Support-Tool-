@@ -15,7 +15,7 @@ import numpy as np
 from pathlib import Path
 
 from explainability.core import ExplainabilityCore
-from explainability.llm_generator import FallbackGenerator
+from explainability.groq_generator import GroqGenerator
 
 st.set_page_config(
     page_title="Case Explanation",
@@ -84,6 +84,23 @@ div[data-testid="metric-container"] label {{
 """, unsafe_allow_html=True)
 
 
+# Available models configuration (order determines default)
+AVAILABLE_MODELS = {
+    "Logistic Regression": {
+        "file": "lr_model.pkl",
+        "description": "Fast linear model, good interpretability",
+    },
+    "Random Forest": {
+        "file": "rf_model.pkl",
+        "description": "Ensemble model with best overall performance",
+    },
+    "Decision Tree": {
+        "file": "dt_model.pkl",
+        "description": "Simple tree model, easy to visualize",
+    },
+}
+
+
 def load_data():
     """Load case data."""
     path = Path("Data/clean.csv")
@@ -93,9 +110,13 @@ def load_data():
 
 
 @st.cache_resource
-def load_model():
+def load_model(model_name: str):
     """Load trained model and preprocessor."""
-    model_path = Path("models/rf_model.pkl")
+    model_config = AVAILABLE_MODELS.get(model_name)
+    if not model_config:
+        return None, None
+
+    model_path = Path(f"models/{model_config['file']}")
     preprocessor_path = Path("Data/processed/preprocessor.pkl")
 
     if model_path.exists() and preprocessor_path.exists():
@@ -106,8 +127,9 @@ def load_model():
 
 
 @st.cache_resource
-def load_explainer(_model, _preprocessor):
+def load_explainer(_model, _preprocessor, model_name: str):
     """Load or create the explainability core."""
+    # model_name is used as cache key to ensure different models get different explainers
     tabular_features = ["channel", "case_type", "category", "plan_tier", "customer_tenure_months"]
 
     # Extract all feature names from preprocessor in correct order
@@ -148,15 +170,19 @@ def load_explainer(_model, _preprocessor):
     if "text" in _preprocessor.named_transformers_:
         vectorizer = _preprocessor.named_transformers_["text"]
 
+    # Check if Groq is available for LLM explanations
+    groq_gen = GroqGenerator()
+    use_llm = groq_gen.is_available()
+
     explainer = ExplainabilityCore(
         model=_model,
         vectorizer=vectorizer,
         feature_names=feature_names,
         tabular_features=tabular_features,
         background_data=background_data,
-        use_llm=False,  # Use template-based for now (faster)
+        use_llm=False,  # We'll use Groq separately if available
     )
-    return explainer
+    return explainer, groq_gen if use_llm else None
 
 
 def get_prediction(model, preprocessor, case_row):
@@ -364,7 +390,7 @@ if data is None:
     st.stop()
 
 # Sidebar: Case selection
-st.sidebar.markdown(f"### Select Case")
+st.sidebar.markdown("### Select Case")
 
 # Filter options
 priority_filter = st.sidebar.multiselect(
@@ -389,6 +415,31 @@ selected_case = st.sidebar.selectbox(
 if not selected_case:
     st.warning("No cases match the selected filters.")
     st.stop()
+
+st.sidebar.markdown("---")
+
+# Sidebar: Model selection
+st.sidebar.markdown("### Model Selection")
+
+# Get available models (only show those that exist)
+available_model_names = [
+    name for name, config in AVAILABLE_MODELS.items()
+    if Path(f"models/{config['file']}").exists()
+]
+
+if not available_model_names:
+    st.sidebar.error("No models found. Run training scripts first.")
+    st.stop()
+
+selected_model = st.sidebar.selectbox(
+    "Prediction Model",
+    options=available_model_names,
+    index=0,
+    help="Select which ML model to use for predictions",
+)
+
+# Show model description
+st.sidebar.caption(AVAILABLE_MODELS[selected_model]["description"])
 
 # Get selected case data
 case_data = data[data["case_id"] == selected_case].iloc[0]
@@ -434,13 +485,13 @@ for i, feat in enumerate(feature_cols):
 
 # Model Explanation section
 st.markdown("---")
-st.markdown(f"<h2 style='color:{THEME_COLOUR};'>Model Prediction</h2>", unsafe_allow_html=True)
+st.markdown(f"<h2 style='color:{THEME_COLOUR};'>Model Prediction ({selected_model})</h2>", unsafe_allow_html=True)
 
 # Load model
-model, preprocessor = load_model()
+model, preprocessor = load_model(selected_model)
 
 if model is None or preprocessor is None:
-    st.warning("Model not found. Run `python scripts/s_01_preprocess.py` and `python scripts/s_06_train_rf.py` to train.")
+    st.warning(f"Model '{selected_model}' not found. Run the corresponding training script.")
     st.stop()
 
 # Get real prediction and explanation
@@ -467,13 +518,25 @@ try:
     }
 
     # Generate SHAP-based explanation
-    explainer = load_explainer(model, preprocessor)
+    explainer, groq_gen = load_explainer(model, preprocessor, selected_model)
     explanation_result = explainer.explain(
         X=X_transformed,
         case_id=str(selected_case),
         raw_features=raw_features,
         generate_text=True,
     )
+
+    # Use Groq for better explanations if available
+    if groq_gen is not None:
+        try:
+            groq_result = groq_gen.generate_explanation(
+                explanation_result["structured_output"],
+                validate=True,
+            )
+            explanation_result["explanation"] = groq_result["explanation"]
+            explanation_result["explanation_source"] = "groq"
+        except Exception as e:
+            st.warning(f"Groq API unavailable, using template: {e}")
 
     # Display natural language explanation
 

@@ -23,7 +23,7 @@ st.set_page_config(
     layout="wide",
 )
 
-THEME_COLOUR = "#707275"
+THEME_COLOUR = "#597AAC"
 
 # Custom CSS
 st.markdown(f"""
